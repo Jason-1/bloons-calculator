@@ -4,7 +4,27 @@ export type monkeyNames =
   | "Dart Monkey"
   | "Boomerang Monkey"
   | "Bomb Shooter"
-  | "Tack Shooter";
+  | "Tack Shooter"
+  | "Ice Monkey"
+  | "Glue Gunner"
+  | "Sniper Monkey"
+  | "Monkey Sub"
+  | "Monkey Buccaneer"
+  | "Monkey Ace"
+  | "Heli Pilot"
+  | "Mortar Monkey"
+  | "Dartling Gunner"
+  | "Wizard Monkey"
+  | "Super Monkey"
+  | "Ninja Monkey"
+  | "Alchemist"
+  | "Druid"
+  | "Mermonkey"
+  | "Banana Farm"
+  | "Spike Factory"
+  | "Monkey Village"
+  | "Engineer Monkey"
+  | "Beast Handler";
 
 export type monkey = {
   name: monkeyNames;

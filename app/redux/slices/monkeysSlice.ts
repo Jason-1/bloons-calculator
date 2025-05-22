@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { monkeyState } from "@/types";
 
-interface MonkeysState {
-  name: string;
-  topPath: number;
-  middlePath: number;
-  bottomPath: number;
-}
-
-const initialState: MonkeysState[] = [];
+const initialState: monkeyState[] = [];
 
 const monkeysSlice = createSlice({
   name: "money",
@@ -25,8 +19,30 @@ const monkeysSlice = createSlice({
     removeMonkey: (state, action) => {
       state.splice(action.payload, 1);
     },
+
+    upgradeTopPath: (state, action) => {
+      if (state[action.payload].topPath < 5) {
+        state[action.payload].topPath += 1;
+      }
+    },
+    upgradeMiddlePath: (state, action) => {
+      if (state[action.payload].middlePath < 5) {
+        state[action.payload].middlePath += 1;
+      }
+    },
+    upgradeBottomPath: (state, action) => {
+      if (state[action.payload].bottomPath < 5) {
+        state[action.payload].bottomPath += 1;
+      }
+    },
   },
 });
 
-export const { addMonkey, removeMonkey } = monkeysSlice.actions;
+export const {
+  addMonkey,
+  removeMonkey,
+  upgradeTopPath,
+  upgradeMiddlePath,
+  upgradeBottomPath,
+} = monkeysSlice.actions;
 export default monkeysSlice.reducer;

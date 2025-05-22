@@ -19,3 +19,10 @@ export type prices = {
   4: number;
   5: number;
 };
+
+export type monkeyState = {
+  name: string;
+  topPath: number;
+  middlePath: number;
+  bottomPath: number;
+};

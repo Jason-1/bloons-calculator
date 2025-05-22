@@ -1,52 +1,38 @@
 "use client";
 
 import DisplayMonkeys from "@/components/DisplayMonkeys";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import React, { useState } from "react";
+import DifficultyDropdown from "@/components/DifficultyDropdown";
+import { Input } from "@/components/ui/input";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDifficulty } from "./redux/selectors";
-import { setDifficulty } from "./redux/slices/difficultySlice";
+import { selectMoney } from "./redux/selectors";
+import { setMoney } from "./redux/slices/moneySlice";
+import { use, useEffect } from "react";
 
 export default function Home() {
   const dispatch = useDispatch();
 
-  const difficulty = useSelector(selectDifficulty);
+  const money = useSelector(selectMoney);
 
   //------------------------------------------------------------------------------//
-  const handleDifficultyChange = (newDifficulty: string) => {
-    dispatch(setDifficulty(newDifficulty));
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setMoney(event.target.value));
   };
+
+  useEffect(() => {
+    console.log("Money changed:", money);
+  }, [money]);
 
   return (
     <main className="flex flex-col">
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          Difficulty Modifier: {difficulty}
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => handleDifficultyChange("easy")}>
-            Easy
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleDifficultyChange("medium")}>
-            Medium
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleDifficultyChange("hard")}>
-            Hard
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => handleDifficultyChange("impoppable")}
-          >
-            Impoppable
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <Input
+        type="number"
+        className="inline-block w-full max-w-[300px] h-auto"
+        value={String(money)}
+        onChange={handleInputChange}
+        placeholder="Enter your money"
+      />
+      <DifficultyDropdown />
       <DisplayMonkeys />
     </main>
   );

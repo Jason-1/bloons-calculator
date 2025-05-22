@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import difficultySlice from "./redux/slices/difficultySlice";
+import moneySlice from "./redux/slices/moneySlice";
 
 export const store = configureStore({
   reducer: {
     difficulty: difficultySlice,
+    money: moneySlice,
   },
 });
 

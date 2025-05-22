@@ -24,7 +24,6 @@ const DifficultyDropdown = () => {
 
   return (
     <div>
-      {" "}
       <DropdownMenu>
         <DropdownMenuTrigger>
           Difficulty Modifier: {difficulty}

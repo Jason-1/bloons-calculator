@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import DartMonkey from "@/public/DartMonkey.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMonkeys } from "@/app/redux/selectors";
 import {
-  addMonkey,
   downgradeBottomPath,
   downgradeMiddlePath,
   downgradeTopPath,
@@ -13,22 +11,96 @@ import {
   upgradeMiddlePath,
   upgradeTopPath,
 } from "@/app/redux/slices/monkeysSlice";
-import { monkeyState } from "@/types";
-import { Plus } from "lucide-react";
+
+import { monkeyNames, monkeyState } from "@/types";
+import AddMonkey from "./AddMonkey";
+
+import DartMonkey from "@/public/DartMonkey.webp";
+import BoomerangMonkey from "@/public/BoomerangMonkey.webp";
+import BombShooter from "@/public/BombShooter.webp";
+import TackShooter from "@/public/TackShooter.webp";
+import IceMonkey from "@/public/IceMonkey.webp";
+import GlueGunner from "@/public/GlueGunner.webp";
+import SniperMonkey from "@/public/SniperMonkey.webp";
+import MonkeySub from "@/public/MonkeySub.webp";
+import MonkeyBuccaneer from "@/public/MonkeyBuccaneer.webp";
+import MonkeyAce from "@/public/MonkeyAce.webp";
+import HeliPilot from "@/public/HeliPilot.webp";
+import MortarMonkey from "@/public/MortarMonkey.webp";
+import DartlingGunner from "@/public/DartlingGunner.webp";
+import WizardMonkey from "@/public/WizardMonkey.webp";
+import SuperMonkey from "@/public/SuperMonkey.webp";
+import NinjaMonkey from "@/public/NinjaMonkey.webp";
+import Alchemist from "@/public/MonkeyAlchemist.webp";
+import Druid from "@/public/Druid.webp";
+import Mermonkey from "@/public/Mermonkey.webp";
+import BananaFarm from "@/public/BananaFarm.webp";
+import SpikeFactory from "@/public/SpikeFactory.webp";
+import MonkeyVillage from "@/public/MonkeyVillage.webp";
+import EngineerMonkey from "@/public/EngineerMonkey.webp";
+import BeastHandler from "@/public/BeastHandler.webp";
 
 const DisplayMonkeys = () => {
+  const getImageSrc = (monkeyName: monkeyNames) => {
+    switch (monkeyName) {
+      case "Dart Monkey":
+        return DartMonkey.src;
+      case "Boomerang Monkey":
+        return BoomerangMonkey.src;
+      case "Bomb Shooter":
+        return BombShooter.src;
+      case "Tack Shooter":
+        return TackShooter.src;
+      case "Ice Monkey":
+        return IceMonkey.src;
+      case "Glue Gunner":
+        return GlueGunner.src;
+      case "Sniper Monkey":
+        return SniperMonkey.src;
+      case "Monkey Sub":
+        return MonkeySub.src;
+      case "Monkey Buccaneer":
+        return MonkeyBuccaneer.src;
+      case "Monkey Ace":
+        return MonkeyAce.src;
+      case "Heli Pilot":
+        return HeliPilot.src;
+      case "Mortar Monkey":
+        return MortarMonkey.src;
+      case "Dartling Gunner":
+        return DartlingGunner.src;
+      case "Wizard Monkey":
+        return WizardMonkey.src;
+      case "Super Monkey":
+        return SuperMonkey.src;
+      case "Ninja Monkey":
+        return NinjaMonkey.src;
+      case "Alchemist":
+        return Alchemist.src;
+      case "Druid":
+        return Druid.src;
+      case "Mermonkey":
+        return Mermonkey.src;
+      case "Banana Farm":
+        return BananaFarm.src;
+      case "Spike Factory":
+        return SpikeFactory.src;
+      case "Monkey Village":
+        return MonkeyVillage.src;
+      case "Engineer Monkey":
+        return EngineerMonkey.src;
+      case "Beast Handler":
+        return BeastHandler.src;
+      default:
+        return DartMonkey.src;
+    }
+  };
+
   const dispatch = useDispatch();
 
   const selectedMonkeys = useSelector(selectMonkeys);
 
   //------------------------------------------------------------------------------//
-  useEffect(() => {
-    console.log("Monkeys changed:", selectedMonkeys);
-  }, [selectedMonkeys]);
-
-  const handleAddMonkey = (monkeyName: string) => {
-    dispatch(addMonkey(monkeyName));
-  };
 
   const handleRemoveMonkey = (monkeyIndex: number) => {
     dispatch(removeMonkey(monkeyIndex));
@@ -101,7 +173,13 @@ const DisplayMonkeys = () => {
             {monkey.middlePath}
             {monkey.bottomPath} {monkey.name}
           </span>
-          <img src={DartMonkey.src} alt="" width={120} />
+          <img
+            src={getImageSrc(monkey.name)}
+            alt=""
+            width={120}
+            height={120}
+            className="object-contain"
+          />
           <div className="flex flex-row">
             <div className="flex flex-col">
               <Button
@@ -153,9 +231,8 @@ const DisplayMonkeys = () => {
           </Button>
         </div>
       ))}
-      <Button onClick={() => handleAddMonkey("Dart Monkey")}>
-        <Plus />
-      </Button>
+
+      <AddMonkey />
     </div>
   );
 };

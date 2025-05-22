@@ -4,14 +4,21 @@ import DisplayMonkeys from "@/components/DisplayMonkeys";
 import DifficultyDropdown from "@/components/DifficultyDropdown";
 import { Input } from "@/components/ui/input";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMoney } from "./redux/selectors";
+import {
+  selectDifficulty,
+  selectMoney,
+  selectMonkeys,
+} from "./redux/selectors";
 import { setMoney } from "./redux/slices/moneySlice";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
+import calculateTotalPrice from "@/lib/calculateTotalPrice";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   const money = useSelector(selectMoney);
+  const selectedMonkeys = useSelector(selectMonkeys);
+  const difficulty = useSelector(selectDifficulty);
 
   //------------------------------------------------------------------------------//
 
@@ -32,6 +39,7 @@ export default function Home() {
         onChange={handleInputChange}
         placeholder="Enter your money"
       />
+      <span>${calculateTotalPrice(selectedMonkeys, difficulty)}</span>
       <DifficultyDropdown />
       <DisplayMonkeys />
     </main>

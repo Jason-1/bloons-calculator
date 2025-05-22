@@ -1,5 +1,13 @@
+export type difficulties = "easy" | "medium" | "hard" | "impoppable";
+
+export type monkeyNames =
+  | "Dart Monkey"
+  | "Boomerang Monkey"
+  | "Bomb Shooter"
+  | "Tack Shooter";
+
 export type monkey = {
-  name: string;
+  name: monkeyNames;
   easy: pathPrices;
   medium: pathPrices;
   hard: pathPrices;
@@ -7,6 +15,7 @@ export type monkey = {
 };
 
 export type pathPrices = {
+  base: number;
   top: prices;
   middle: prices;
   bottom: prices;
@@ -21,7 +30,7 @@ export type prices = {
 };
 
 export type monkeyState = {
-  name: string;
+  name: monkeyNames;
   topPath: number;
   middlePath: number;
   bottomPath: number;

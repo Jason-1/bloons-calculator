@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { monkeys } from "@/data";
 import DartMonkey from "@/public/DartMonkey.webp";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDifficulty, selectMonkeys } from "@/app/redux/selectors";
+import { selectMonkeys } from "@/app/redux/selectors";
 import {
   addMonkey,
   downgradeBottomPath,
@@ -15,11 +14,11 @@ import {
   upgradeTopPath,
 } from "@/app/redux/slices/monkeysSlice";
 import { monkeyState } from "@/types";
+import { Plus } from "lucide-react";
 
 const DisplayMonkeys = () => {
   const dispatch = useDispatch();
 
-  const difficulty = useSelector(selectDifficulty);
   const selectedMonkeys = useSelector(selectMonkeys);
 
   //------------------------------------------------------------------------------//
@@ -154,7 +153,9 @@ const DisplayMonkeys = () => {
           </Button>
         </div>
       ))}
-      <Button onClick={() => handleAddMonkey("Dart Monkey")}>Add Monkey</Button>
+      <Button onClick={() => handleAddMonkey("Dart Monkey")}>
+        <Plus />
+      </Button>
     </div>
   );
 };

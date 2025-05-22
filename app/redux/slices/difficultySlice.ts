@@ -1,6 +1,7 @@
+import { difficulties } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: { difficulty: difficulties } = {
   difficulty: "easy",
 };
 

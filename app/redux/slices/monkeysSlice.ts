@@ -35,6 +35,22 @@ const monkeysSlice = createSlice({
         state[action.payload].bottomPath += 1;
       }
     },
+
+    downgradeTopPath: (state, action) => {
+      if (state[action.payload].topPath > 0) {
+        state[action.payload].topPath -= 1;
+      }
+    },
+    downgradeMiddlePath: (state, action) => {
+      if (state[action.payload].middlePath > 0) {
+        state[action.payload].middlePath -= 1;
+      }
+    },
+    downgradeBottomPath: (state, action) => {
+      if (state[action.payload].bottomPath > 0) {
+        state[action.payload].bottomPath -= 1;
+      }
+    },
   },
 });
 
@@ -44,5 +60,8 @@ export const {
   upgradeTopPath,
   upgradeMiddlePath,
   upgradeBottomPath,
+  downgradeTopPath,
+  downgradeMiddlePath,
+  downgradeBottomPath,
 } = monkeysSlice.actions;
 export default monkeysSlice.reducer;

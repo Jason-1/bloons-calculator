@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import difficultySlice from "./redux/slices/difficultySlice";
 import moneySlice from "./redux/slices/moneySlice";
 import monkeysSlice from "./redux/slices/monkeysSlice";
+import roundSlice from "./redux/slices/roundSlice";
 
 export const store = configureStore({
   reducer: {
     difficulty: difficultySlice,
     money: moneySlice,
     monkeys: monkeysSlice,
+    round: roundSlice,
   },
 });
 

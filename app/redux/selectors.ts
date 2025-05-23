@@ -5,3 +5,5 @@ export const selectDifficulty = (state: RootState) =>
 export const selectMoney = (state: RootState) => state.money.money;
 export const selectMonkeys = (state: RootState) => state.monkeys;
 export const selectRound = (state: RootState) => state.round.round;
+export const selectUpgradesInOrder = (state: RootState) =>
+  state.upgradesInOrder.upgradesInOrder;

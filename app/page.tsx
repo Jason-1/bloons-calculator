@@ -9,12 +9,15 @@ import {
   selectMoney,
   selectMonkeys,
   selectRound,
+  selectUpgradesInOrder,
 } from "./redux/selectors";
 import { setMoney } from "./redux/slices/moneySlice";
 import { useEffect } from "react";
 import calculateTotalPrice from "@/lib/calculateTotalPrice";
 import { setRound } from "./redux/slices/roundSlice";
 import calculateRound from "@/lib/calculateRound";
+import { Switch } from "@/components/ui/switch";
+import { toggleUpgradesInOrder } from "./redux/slices/upgradesInOrderSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -23,6 +26,7 @@ export default function Home() {
   const round = useSelector(selectRound);
   const selectedMonkeys = useSelector(selectMonkeys);
   const difficulty = useSelector(selectDifficulty);
+  const upgradesInOrder = useSelector(selectUpgradesInOrder);
 
   //------------------------------------------------------------------------------//
 
@@ -36,10 +40,9 @@ export default function Home() {
   ) => {
     dispatch(setRound(event.target.value));
   };
-
-  useEffect(() => {
-    console.log("Money changed:", money);
-  }, [money]);
+  const handleToggleUpgradesInOrder = () => {
+    dispatch(toggleUpgradesInOrder());
+  };
 
   return (
     <main className="flex flex-col">
@@ -61,6 +64,14 @@ export default function Home() {
           onChange={handleRoundInputChange}
           placeholder="Enter Round"
         />
+        <div className="flex flex-row items-center gap-2">
+          <span>Upgrades in order: </span>
+          <Switch
+            id="upgradesInOrder"
+            checked={upgradesInOrder}
+            onCheckedChange={() => handleToggleUpgradesInOrder()}
+          />
+        </div>
       </div>
       <div className="flex flex-row gap-4">
         <span>

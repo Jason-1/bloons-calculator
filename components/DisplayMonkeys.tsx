@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMonkeys } from "@/app/redux/selectors";
+import {
+  selectDifficulty,
+  selectMoney,
+  selectMonkeys,
+  selectRound,
+  selectUpgradesInOrder,
+} from "@/app/redux/selectors";
 import {
   downgradeBottomPath,
   downgradeMiddlePath,
@@ -39,6 +45,8 @@ import SpikeFactory from "@/public/SpikeFactory.webp";
 import MonkeyVillage from "@/public/MonkeyVillage.webp";
 import EngineerMonkey from "@/public/EngineerMonkey.webp";
 import BeastHandler from "@/public/BeastHandler.webp";
+import calculateRound from "@/lib/calculateRound";
+import calculateTotalPrice from "@/lib/calculateTotalPrice";
 
 const DisplayMonkeys = () => {
   const getImageSrc = (monkeyName: monkeyNames) => {
@@ -98,7 +106,11 @@ const DisplayMonkeys = () => {
 
   const dispatch = useDispatch();
 
+  const money = useSelector(selectMoney);
+  const round = useSelector(selectRound);
   const selectedMonkeys = useSelector(selectMonkeys);
+  const difficulty = useSelector(selectDifficulty);
+  const upgradesInOrder = useSelector(selectUpgradesInOrder);
 
   //------------------------------------------------------------------------------//
 
@@ -229,6 +241,14 @@ const DisplayMonkeys = () => {
           >
             Remove {monkey.name}
           </Button>
+          <span>
+            {/* This returns a number, I can store it and check it next loop */}
+            {calculateRound(
+              round,
+              money,
+              calculateTotalPrice([monkey], difficulty)
+            )}
+          </span>
         </div>
       ))}
 

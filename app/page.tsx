@@ -14,6 +14,7 @@ import { setMoney } from "./redux/slices/moneySlice";
 import { useEffect } from "react";
 import calculateTotalPrice from "@/lib/calculateTotalPrice";
 import { setRound } from "./redux/slices/roundSlice";
+import calculateRound from "@/lib/calculateRound";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col">
-      <div>
+      <div className="flex flex-row gap-4">
         <span>Money: </span>
         <Input
           type="number"
@@ -51,7 +52,7 @@ export default function Home() {
           onChange={handleMoneyInputChange}
           placeholder="Enter your money"
         />
-        {"   "}
+
         <span>Round: </span>
         <Input
           type="number"
@@ -61,7 +62,18 @@ export default function Home() {
           placeholder="Enter Round"
         />
       </div>
-      <span>${calculateTotalPrice(selectedMonkeys, difficulty)}</span>
+      <div className="flex flex-row gap-4">
+        <span>
+          Total Price: ${calculateTotalPrice(selectedMonkeys, difficulty)}
+        </span>
+        <span>
+          {calculateRound(
+            round,
+            money,
+            calculateTotalPrice(selectedMonkeys, difficulty)
+          )}
+        </span>
+      </div>
       <DifficultyDropdown />
       <DisplayMonkeys />
     </main>

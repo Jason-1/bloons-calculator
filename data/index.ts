@@ -1,7 +1,7 @@
-import { monkey } from "@/types";
+import { CHIMPSCashType, monkey } from "@/types";
 
-export const CHIMPSCash = [
-  { round: "initial", cash: 650 },
+export const CHIMPSCash: CHIMPSCashType[] = [
+  { round: 0, cash: 650 },
   { round: 6, cash: 163 },
   { round: 7, cash: 182 },
   { round: 8, cash: 200 },

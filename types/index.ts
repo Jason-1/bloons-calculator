@@ -26,6 +26,11 @@ export type monkeyNames =
   | "Engineer Monkey"
   | "Beast Handler";
 
+export type CHIMPSCashType = {
+  round: number;
+  cash: number;
+};
+
 export type monkey = {
   name: monkeyNames;
   easy: pathPrices;
